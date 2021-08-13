@@ -17,13 +17,11 @@ final class LocationForecastController: BaseViewController {
     
     private var locationLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .blue
         return label
     }()
     
     private var temperatureLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .red
         return label
     }()
     

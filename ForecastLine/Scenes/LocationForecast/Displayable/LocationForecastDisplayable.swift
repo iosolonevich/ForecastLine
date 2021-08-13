@@ -17,7 +17,7 @@ struct LocationForecastDisplayable {
     init(object: LocationWeather) {
         id = object.id
         name = object.locationName
-        temp = object.temperature.temperatureString
+        temp = object.temperature.temperatureStringKelvinToCelsius
         symbol = object.symbol
     }
 }

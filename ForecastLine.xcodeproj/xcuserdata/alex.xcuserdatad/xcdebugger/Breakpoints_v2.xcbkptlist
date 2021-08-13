@@ -7,17 +7,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7743601C-7367-4BE9-8389-D880166F4510"
+            uuid = "3DEF6267-C2DD-4463-9E31-89D525C9B260"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ForecastLine/Scenes/LocationSearch/LocationSearchViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "saveLocation(location:)"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "saveLocations()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3DEF6267-C2DD-4463-9E31-89D525C9B260 - fc313ffad39a1569"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ForecastLine.LocationSearchViewModel.saveLocations() -&gt; ()"
+                  moduleName = "ForecastLine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alex/Documents/dev/ForecastLine/ForecastLine/Scenes/LocationSearch/LocationSearchViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "25">
+               </Location>
+               <Location
+                  uuid = "3DEF6267-C2DD-4463-9E31-89D525C9B260 - 61754c2f033cb5df"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;ForecastLine.Empty, Swift.Error&gt;) -&gt; () in ForecastLine.LocationSearchViewModel.saveLocations() -&gt; ()"
+                  moduleName = "ForecastLine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alex/Documents/dev/ForecastLine/ForecastLine/Scenes/LocationSearch/LocationSearchViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "95">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

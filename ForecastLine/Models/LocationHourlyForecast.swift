@@ -7,7 +7,7 @@
 
 struct LocationHourlyForecast: Codable {
     
-    let coordinates: String
+//    let coordinates: String
     let dateTimestamp: Double
     let temperature: Double
     let precipitationProbability: Double

@@ -61,7 +61,7 @@ private extension LocationForecastViewModel {
             case .success(let apiResponse):
                 let hourlyForecast = apiResponse.hourly.map {
                         LocationHourlyForecast(
-                            coordinates: coordinates,
+//                            coordinates: coordinates,
                             dateTimestamp: Double($0.dt),
                             temperature: $0.temp,
                             precipitationProbability: $0.dewPoint,
@@ -69,8 +69,9 @@ private extension LocationForecastViewModel {
                 }
                 let dailyForecast = apiResponse.daily.map {
                     LocationDailyForecast(
-                        coordinates: coordinates,
+//                        coordinates: coordinates,
                         dateTimestamp: Double($0.dt),
+                        temperature: $0.temp.day,
                         maxTemperature: $0.temp.max,
                         minTemperature: $0.temp.min,
                         precipitationProbability: $0.dewPoint,

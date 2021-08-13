@@ -8,45 +8,67 @@
 import Foundation
 
 enum WeatherSymbol: String {
-    case clearDay = "clear-day"
-    case clearNight = "clear-night"
-    case partlyCloudyDay = "partly-cloudy-day"
-    case partlyCloudyNight = "partly-cloudy-night"
-    case cloudy
-    case fog
-    case rain
-    case sleet
-    case snow
-    case wind
-    case umbrella
+    case clearSky = "01d"
+    case fewClouds = "02d"
+    case scatteredClouds = "03d"
+    case brokenClouds = "04d"
+    case showerRain = "09d"
+    case rain = "10d"
+    case thunderstorm = "11d"
+    case snow = "13d"
+    case mist = "50d"
+    
+    case clearSkyNight = "01n"
+    case fewCloudsNight = "02n"
+    case scatteredCloudsNight = "03n"
+    case brokenCloudsNight = "04n"
+    case showerRainNight = "09n"
+    case rainNight = "10n"
+    case thunderstormNight = "11n"
+    case snowNight = "13n"
+    case mistNight = "50n"
+    
     case isEmpty
     
     var icon: String {
         switch self {
-        case .clearDay:
+        case .clearSky:
             return "sun.max"
-        case .clearNight:
-            return "moon"
-        case .cloudy:
+        case .scatteredClouds, .brokenClouds:
             return "cloud"
-        case .fog:
+        case .mist:
             return "cloud.fog"
-        case .partlyCloudyDay:
+        case .fewClouds:
             return "cloud.sun"
-        case .partlyCloudyNight:
-            return "cloud.moon"
         case .rain:
             return "cloud.rain"
-        case .sleet:
-            return "cloud.sleet"
+        case .thunderstorm:
+            return "cloud.bolt"
         case .snow:
             return "cloud.snow"
-        case .wind:
-            return "wind"
-        case .umbrella:
-            return "umbrella"
         case .isEmpty:
             return "nosign"
+        case .showerRain:
+            return "cloud.drizzle"
+        
+        case .clearSkyNight:
+            return "moon"
+        case .fewCloudsNight:
+            return "cloud.moon"
+        case .scatteredCloudsNight, .brokenCloudsNight:
+            return "cloud.fill"
+        case .showerRainNight:
+            return "cloud.drizzle.fill"
+        case .rainNight:
+            return "cloud.rain.fill"
+        case .thunderstormNight:
+            return "cloud.bolt.rain.fill"
+        case .snowNight:
+            return "cloud.snow.fill"
+        case .mistNight:
+            return "cloud.fog.fill"
         }
+        
+        
     }
 }

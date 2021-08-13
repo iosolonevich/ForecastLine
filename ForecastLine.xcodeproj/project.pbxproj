@@ -41,6 +41,10 @@
 		FAC28C0026AE9D7C00219E45 /* LocationSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC28BFF26AE9D7C00219E45 /* LocationSearchViewModel.swift */; };
 		FAC28C0226AE9DA000219E45 /* LocationSearchCellManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC28C0126AE9DA000219E45 /* LocationSearchCellManager.swift */; };
 		FAC9AA4026C642ED001926A5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = FAC9AA3F26C642ED001926A5 /* .gitignore */; };
+		FAC9AA4426C65990001926A5 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC9AA4326C65990001926A5 /* LineChartView.swift */; };
+		FAC9AA4726C659E9001926A5 /* PointEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC9AA4626C659E9001926A5 /* PointEntry.swift */; };
+		FAC9AA4926C65A64001926A5 /* CurveAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC9AA4826C65A64001926A5 /* CurveAlgorithm.swift */; };
+		FAC9AA4B26C68A1C001926A5 /* UIImage+WithBackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC9AA4A26C68A1C001926A5 /* UIImage+WithBackgroundColor.swift */; };
 		FAED1BF726B927BA00073C9A /* LocationSearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAED1BF626B927BA00073C9A /* LocationSearchResultsController.swift */; };
 		FAF804AD269AD17A00DFBA94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF804AC269AD17A00DFBA94 /* AppDelegate.swift */; };
 		FAF804AF269AD17A00DFBA94 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF804AE269AD17A00DFBA94 /* SceneDelegate.swift */; };
@@ -104,6 +108,10 @@
 		FAC28BFF26AE9D7C00219E45 /* LocationSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewModel.swift; sourceTree = "<group>"; };
 		FAC28C0126AE9DA000219E45 /* LocationSearchCellManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchCellManager.swift; sourceTree = "<group>"; };
 		FAC9AA3F26C642ED001926A5 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		FAC9AA4326C65990001926A5 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
+		FAC9AA4626C659E9001926A5 /* PointEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointEntry.swift; sourceTree = "<group>"; };
+		FAC9AA4826C65A64001926A5 /* CurveAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurveAlgorithm.swift; sourceTree = "<group>"; };
+		FAC9AA4A26C68A1C001926A5 /* UIImage+WithBackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+WithBackgroundColor.swift"; sourceTree = "<group>"; };
 		FAED1BF626B927BA00073C9A /* LocationSearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResultsController.swift; sourceTree = "<group>"; };
 		FAF804A9269AD17A00DFBA94 /* ForecastLine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForecastLine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF804AC269AD17A00DFBA94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -201,8 +209,6 @@
 		FAC28BE726AD489B00219E45 /* Displayable */ = {
 			isa = PBXGroup;
 			children = (
-				FAC28BE826AD48BD00219E45 /* LocationDailyForecastListDisplayable.swift */,
-				FAC28BF226AD4B5800219E45 /* LocationHourlyForecastListDisplayable.swift */,
 				FAC28BF426AD5A5400219E45 /* LocationForecastDisplayable.swift */,
 				FAC28BF826AD781800219E45 /* LocationForecastsDisplayable.swift */,
 			);
@@ -219,6 +225,33 @@
 				FAED1BF626B927BA00073C9A /* LocationSearchResultsController.swift */,
 			);
 			path = LocationSearch;
+			sourceTree = "<group>";
+		};
+		FAC9AA4126C656DE001926A5 /* Displayable */ = {
+			isa = PBXGroup;
+			children = (
+				FAF804D1269AE95100DFBA94 /* LocationWeatherDisplayable.swift */,
+				FAC28BE826AD48BD00219E45 /* LocationDailyForecastListDisplayable.swift */,
+				FAC28BF226AD4B5800219E45 /* LocationHourlyForecastListDisplayable.swift */,
+			);
+			path = Displayable;
+			sourceTree = "<group>";
+		};
+		FAC9AA4226C65974001926A5 /* LineChartView */ = {
+			isa = PBXGroup;
+			children = (
+				FAC9AA4326C65990001926A5 /* LineChartView.swift */,
+			);
+			path = LineChartView;
+			sourceTree = "<group>";
+		};
+		FAC9AA4526C659BD001926A5 /* LineChart */ = {
+			isa = PBXGroup;
+			children = (
+				FAC9AA4626C659E9001926A5 /* PointEntry.swift */,
+				FAC9AA4826C65A64001926A5 /* CurveAlgorithm.swift */,
+			);
+			path = LineChart;
 			sourceTree = "<group>";
 		};
 		FAF804A0269AD17A00DFBA94 = {
@@ -268,6 +301,7 @@
 		FAF804C1269AD56A00DFBA94 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				FAC9AA4226C65974001926A5 /* LineChartView */,
 				FA7508C326A5D4B0008FA4DD /* Settings */,
 				FAC28BFA26AE9C8400219E45 /* LocationSearch */,
 				FAF804C2269AD58000DFBA94 /* LocationList */,
@@ -279,12 +313,12 @@
 		FAF804C2269AD58000DFBA94 /* LocationList */ = {
 			isa = PBXGroup;
 			children = (
+				FAC9AA4126C656DE001926A5 /* Displayable */,
 				FAF804C3269AD59C00DFBA94 /* LocationListCreator.swift */,
 				FAF804C5269AD7A700DFBA94 /* LocationListViewModel.swift */,
 				FAF804CA269ADC1F00DFBA94 /* LocationListController.swift */,
 				FAF804CC269AE6C900DFBA94 /* LocationListCellManager.swift */,
 				FAF804CF269AE89700DFBA94 /* LocationListTableViewCell.swift */,
-				FAF804D1269AE95100DFBA94 /* LocationWeatherDisplayable.swift */,
 			);
 			path = LocationList;
 			sourceTree = "<group>";
@@ -303,6 +337,7 @@
 		FAF804D3269AEA8400DFBA94 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FAC9AA4526C659BD001926A5 /* LineChart */,
 				FAF804E1269B0FD300DFBA94 /* APIResponses */,
 				FA5967A8269CA873005A7BCC /* Location.swift */,
 				FAF804D4269AEA9200DFBA94 /* LocationWeather.swift */,
@@ -345,6 +380,7 @@
 				FAF804EB269B1D4700DFBA94 /* UITableView+Register+Dequeue.swift */,
 				FAF804ED269B281900DFBA94 /* NSObject+ClassName.swift */,
 				FA70CE83269C331D00C21EA2 /* UIView+Activate+LayoutAnchor.swift */,
+				FAC9AA4A26C68A1C001926A5 /* UIImage+WithBackgroundColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -434,6 +470,8 @@
 				FAF804F2269B321500DFBA94 /* Empty.swift in Sources */,
 				FAF804D5269AEA9200DFBA94 /* LocationWeather.swift in Sources */,
 				FAC28BCF26A9AC6800219E45 /* SettingsSection.swift in Sources */,
+				FAC9AA4426C65990001926A5 /* LineChartView.swift in Sources */,
+				FAC9AA4726C659E9001926A5 /* PointEntry.swift in Sources */,
 				FA41648226A5E33600D333C7 /* SettingsController.swift in Sources */,
 				FA5D88FF26A93DEE00823F38 /* SettingsCellManager.swift in Sources */,
 				FAF804C9269ADBBA00DFBA94 /* BaseViewController.swift in Sources */,
@@ -467,6 +505,7 @@
 				FAED1BF726B927BA00073C9A /* LocationSearchResultsController.swift in Sources */,
 				FA5967AB269EC527005A7BCC /* Coordinates.swift in Sources */,
 				FA5967AD269F0019005A7BCC /* WeatherNetworkFake.swift in Sources */,
+				FAC9AA4B26C68A1C001926A5 /* UIImage+WithBackgroundColor.swift in Sources */,
 				FAC28BD626AC11F200219E45 /* PrivacyController.swift in Sources */,
 				FA41647E26A5DE6200D333C7 /* SettingsCreator.swift in Sources */,
 				FAF804DC269AED7900DFBA94 /* BaseNetwork.swift in Sources */,
@@ -474,6 +513,7 @@
 				FAC28BD826AC124F00219E45 /* PrivacyViewModel.swift in Sources */,
 				FAC28BE426AD425E00219E45 /* LocationForecastCellManagerItems.swift in Sources */,
 				FA70CE87269C3A6900C21EA2 /* SavedLocationRepository.swift in Sources */,
+				FAC9AA4926C65A64001926A5 /* CurveAlgorithm.swift in Sources */,
 				FAC28BDF26AC6BC800219E45 /* LocationForecastController.swift in Sources */,
 				FAF804E8269B13EC00DFBA94 /* Double+StringConverters.swift in Sources */,
 			);

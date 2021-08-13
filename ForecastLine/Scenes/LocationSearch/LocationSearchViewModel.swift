@@ -10,16 +10,12 @@ import Foundation
 final class LocationSearchViewModel {
     
     private(set) var locations = [Location]()
-    
     private let repository: SavedLocationsRepository
 
-    init(repository: SavedLocationsRepository)
-    {
+    init(repository: SavedLocationsRepository) {
         self.repository = repository
     }
 }
-
-//self.locations = [Location(id: "1", name: "Prague", latitude: 50.0755, longitude: 14.4378), Location(id: "2", name: "New York", latitude: 40.7128, longitude: -74.006)]
 
 extension LocationSearchViewModel {
     func getSavedLocations() {
@@ -45,8 +41,8 @@ extension LocationSearchViewModel {
     }
     
     private func saveLocations() {
-        repository.saveLocations(locations: locations) { [weak self] result in
-            guard let self = self else { return }
+        repository.saveLocations(locations: locations) { result in
+//            guard let self = self else { return }
             switch result {
             case .success(let empty):
                 print("success saving locations")

@@ -17,6 +17,7 @@ typealias FetchWeatherCompletion = (Result<[LocationWeather], Error>) -> Void
 final class LocationListViewModel {
     
     var locationWeathers = [LocationWeather]()
+    var locationForecasts = [LocationForecast]()
     
     var delegate: LocationListViewModelDelegate?
     
@@ -44,6 +45,11 @@ extension LocationListViewModel {
                 self.delegate?.didFailWithError(error: error)
             }
         }
+    }
+    
+    func saveSampleLocations() {
+        
+        repository.saveLocations(locations: [Location(id: "1", name: "Prague", latitude: 50.0755, longitude: 14.4378), Location(id: "2", name: "New York", latitude: 40.7128, longitude: -74.006)], completion: nil)
     }
 }
 
@@ -105,6 +111,20 @@ private extension LocationListViewModel {
                                latitude: location.latitude,
                                longitude: location.longitude,
                                temperature: apiResponse.current.temp,
+                               hourly: apiResponse.hourly.map { LocationHourlyForecast(
+//                                                                    coordinates: coordinates,
+                                                                    dateTimestamp: Double($0.dt),
+                                                                    temperature: $0.temp,
+                                                                    precipitationProbability: $0.dewPoint,
+                                                                    icon: $0.weather.first?.icon ?? "") },
+                               daily: apiResponse.daily.map { LocationDailyForecast(
+//                                                                    coordinates: coordinates,
+                                                                    dateTimestamp: Double($0.dt),
+                                                                    temperature: $0.temp.day,
+                                                                    maxTemperature: $0.temp.max,
+                                                                    minTemperature: $0.temp.min,
+                                                                    precipitationProbability: $0.dewPoint,
+                                                                    icon: $0.weather.first?.icon ?? "") },
                                icon: apiResponse.current.weather.first?.icon ?? "")
     }
     

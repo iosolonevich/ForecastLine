@@ -7,8 +7,9 @@
 
 struct LocationDailyForecast: Codable {
 
-    let coordinates: String
+//    let coordinates: String
     let dateTimestamp: Double
+    let temperature: Double
     let maxTemperature: Double
     let minTemperature: Double
     let precipitationProbability: Double

@@ -14,6 +14,8 @@ struct LocationWeather: Codable {
     let latitude: Double
     let longitude: Double
     let temperature: Double
+    let hourly: [LocationHourlyForecast]
+    let daily: [LocationDailyForecast]
     let icon: String
     
     var symbol: WeatherSymbol {

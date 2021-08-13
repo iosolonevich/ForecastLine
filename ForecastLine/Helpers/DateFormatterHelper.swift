@@ -13,6 +13,7 @@ enum DateFormat: String {
     case hour = "HH"
     case day = "dd.MM EEEE"
     case apiFormat = "yyyy-MM-DD'T'HH:mm:ss"
+    case dayShort = "d.M"
 }
 
 enum TimeZoneID: String {

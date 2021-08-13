@@ -13,6 +13,10 @@ extension Double {
         return "\(Int(self.rounded()))°"
     }
     
+    var temperatureStringKelvinToCelsius: String {
+        return "\(Int((self - 273.15).rounded()))°"
+    }
+    
     var percentString: String {
         return "\(Int((self * 100).rounded()))%"
     }

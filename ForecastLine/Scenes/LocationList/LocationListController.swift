@@ -30,6 +30,9 @@ final class LocationListController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel.saveSampleLocations()
+        
         setupTableView()
         setupNavigationBar()
         setupViewModelDelegate()
@@ -70,7 +73,7 @@ extension LocationListController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let locationWeathers = viewModel.locationWeathers
-        return cellManager.buildCell(tableView: tableView, indexPath: indexPath, locationForecasts: locationWeathers)
+        return cellManager.buildCell(tableView: tableView, indexPath: indexPath, locationWeathers: locationWeathers)
     }
 }
 
@@ -79,6 +82,10 @@ extension LocationListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let location = viewModel.locationWeathers[indexPath.row]
         navigateToLocationForecast(location: location)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 250
     }
 }
 

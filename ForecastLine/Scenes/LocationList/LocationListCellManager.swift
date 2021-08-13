@@ -9,17 +9,17 @@ import UIKit
 
 struct LocationListCellManager {
     
-    func buildCell(tableView: UITableView, indexPath: IndexPath, locationForecasts: [LocationWeather])
+    func buildCell(tableView: UITableView, indexPath: IndexPath, locationWeathers: [LocationWeather])
     -> UITableViewCell {
-        let locationForecastsDisplayable = convertToLocationForecastsDisplayable(locationForecasts: locationForecasts)
+        let locationWeathersDisplayable = convertToLocationWeathersDisplayable(locationWeathers: locationWeathers)
         let cell = tableView.dequeue(with: LocationListTableViewCell.self, for: indexPath)
-        cell.setup(with: locationForecastsDisplayable[indexPath.row])
+        cell.setup(with: locationWeathersDisplayable[indexPath.row])
         return cell
     }
 }
 
 extension LocationListCellManager {
-    func convertToLocationForecastsDisplayable(locationForecasts: [LocationWeather]) -> [LocationWeatherDisplayable] {
-        return locationForecasts.map { LocationWeatherDisplayable(object: $0) }
+    func convertToLocationWeathersDisplayable(locationWeathers: [LocationWeather]) -> [LocationWeatherDisplayable] {
+        return locationWeathers.map { LocationWeatherDisplayable(object: $0) }
     }
 }
