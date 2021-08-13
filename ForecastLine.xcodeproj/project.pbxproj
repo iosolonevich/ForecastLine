@@ -40,6 +40,7 @@
 		FAC28BFE26AE9CC700219E45 /* LocationSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC28BFD26AE9CC700219E45 /* LocationSearchController.swift */; };
 		FAC28C0026AE9D7C00219E45 /* LocationSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC28BFF26AE9D7C00219E45 /* LocationSearchViewModel.swift */; };
 		FAC28C0226AE9DA000219E45 /* LocationSearchCellManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC28C0126AE9DA000219E45 /* LocationSearchCellManager.swift */; };
+		FAC9AA4026C642ED001926A5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = FAC9AA3F26C642ED001926A5 /* .gitignore */; };
 		FAED1BF726B927BA00073C9A /* LocationSearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAED1BF626B927BA00073C9A /* LocationSearchResultsController.swift */; };
 		FAF804AD269AD17A00DFBA94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF804AC269AD17A00DFBA94 /* AppDelegate.swift */; };
 		FAF804AF269AD17A00DFBA94 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF804AE269AD17A00DFBA94 /* SceneDelegate.swift */; };
@@ -102,6 +103,7 @@
 		FAC28BFD26AE9CC700219E45 /* LocationSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchController.swift; sourceTree = "<group>"; };
 		FAC28BFF26AE9D7C00219E45 /* LocationSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewModel.swift; sourceTree = "<group>"; };
 		FAC28C0126AE9DA000219E45 /* LocationSearchCellManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchCellManager.swift; sourceTree = "<group>"; };
+		FAC9AA3F26C642ED001926A5 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		FAED1BF626B927BA00073C9A /* LocationSearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResultsController.swift; sourceTree = "<group>"; };
 		FAF804A9269AD17A00DFBA94 /* ForecastLine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForecastLine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF804AC269AD17A00DFBA94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 		FAF804A0269AD17A00DFBA94 = {
 			isa = PBXGroup;
 			children = (
+				FAC9AA3F26C642ED001926A5 /* .gitignore */,
 				FAF804AB269AD17A00DFBA94 /* ForecastLine */,
 				FAF804AA269AD17A00DFBA94 /* Products */,
 			);
@@ -403,6 +406,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAC9AA4026C642ED001926A5 /* .gitignore in Resources */,
 				FAC28BDA26AC148D00219E45 /* privacyandterms.rtf in Resources */,
 				FAF804B9269AD17B00DFBA94 /* LaunchScreen.storyboard in Resources */,
 				FAF804B6269AD17B00DFBA94 /* Assets.xcassets in Resources */,
