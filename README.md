@@ -9,16 +9,16 @@
 ### Work in progress
 
 - [x] main screen with a location list
-    - [ ] _scrollable chart view for daily/hourly forecast_
-    - [x]  _detailed info for current weather_
+    - [ ] scrollable chart view for daily/hourly forecast
+    - [x]  detailed info for current weather
 
 - [x] location screen
     - [x] search screen with autocomplete location suggestions
-    - [ ] _current location option (using a current GPS position)_
+    - [ ] current location option (using a current GPS position)
 
-- [x] _settings screen_ 
+- [x] settings screen
     - [x] privacy policy
     - [ ] app settings like units switch/dark mode etc.
 
-- [ ] _widgets using WidgetKit_
-- [ ] _Apple Watch app using WatchKit_
+- [ ] widgets using WidgetKit
+- [ ] Apple Watch app using WatchKit
