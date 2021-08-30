@@ -16,6 +16,9 @@
 		FA5D88FF26A93DEE00823F38 /* SettingsCellManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5D88FE26A93DEE00823F38 /* SettingsCellManager.swift */; };
 		FA70CE84269C331D00C21EA2 /* UIView+Activate+LayoutAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA70CE83269C331D00C21EA2 /* UIView+Activate+LayoutAnchor.swift */; };
 		FA70CE87269C3A6900C21EA2 /* SavedLocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA70CE86269C3A6900C21EA2 /* SavedLocationRepository.swift */; };
+		FAA2133726DD1D2F007B2C2A /* addlocation.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2133426DD1D2E007B2C2A /* addlocation.png */; };
+		FAA2133826DD1D2F007B2C2A /* locations.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2133526DD1D2F007B2C2A /* locations.png */; };
+		FAA2133926DD1D2F007B2C2A /* main.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2133626DD1D2F007B2C2A /* main.png */; };
 		FAC28BCF26A9AC6800219E45 /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC28BCE26A9AC6800219E45 /* SettingsSection.swift */; };
 		FAC28BD126AB00EE00219E45 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC28BD026AB00EE00219E45 /* SettingsTableViewCell.swift */; };
 		FAC28BD426AC119B00219E45 /* PrivacyCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC28BD326AC119B00219E45 /* PrivacyCreator.swift */; };
@@ -83,6 +86,9 @@
 		FA5D88FE26A93DEE00823F38 /* SettingsCellManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellManager.swift; sourceTree = "<group>"; };
 		FA70CE83269C331D00C21EA2 /* UIView+Activate+LayoutAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Activate+LayoutAnchor.swift"; sourceTree = "<group>"; };
 		FA70CE86269C3A6900C21EA2 /* SavedLocationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLocationRepository.swift; sourceTree = "<group>"; };
+		FAA2133426DD1D2E007B2C2A /* addlocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addlocation.png; sourceTree = "<group>"; };
+		FAA2133526DD1D2F007B2C2A /* locations.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locations.png; sourceTree = "<group>"; };
+		FAA2133626DD1D2F007B2C2A /* main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main.png; sourceTree = "<group>"; };
 		FAC28BCE26A9AC6800219E45 /* SettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSection.swift; sourceTree = "<group>"; };
 		FAC28BD026AB00EE00219E45 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		FAC28BD326AC119B00219E45 /* PrivacyCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyCreator.swift; sourceTree = "<group>"; };
@@ -172,6 +178,16 @@
 				FAC28BD026AB00EE00219E45 /* SettingsTableViewCell.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		FAA2133326DD1D0E007B2C2A /* images */ = {
+			isa = PBXGroup;
+			children = (
+				FAA2133626DD1D2F007B2C2A /* main.png */,
+				FAA2133526DD1D2F007B2C2A /* locations.png */,
+				FAA2133426DD1D2E007B2C2A /* addlocation.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 		FAC28BD226AC118E00219E45 /* Privacy */ = {
@@ -288,6 +304,7 @@
 		FAF804C0269AD1FD00DFBA94 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				FAA2133326DD1D0E007B2C2A /* images */,
 				FAF804AC269AD17A00DFBA94 /* AppDelegate.swift */,
 				FAF804AE269AD17A00DFBA94 /* SceneDelegate.swift */,
 				FAF804B5269AD17B00DFBA94 /* Assets.xcassets */,
@@ -442,8 +459,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAA2133826DD1D2F007B2C2A /* locations.png in Resources */,
 				FAC9AA4026C642ED001926A5 /* .gitignore in Resources */,
 				FAC28BDA26AC148D00219E45 /* privacyandterms.rtf in Resources */,
+				FAA2133726DD1D2F007B2C2A /* addlocation.png in Resources */,
+				FAA2133926DD1D2F007B2C2A /* main.png in Resources */,
 				FAF804B9269AD17B00DFBA94 /* LaunchScreen.storyboard in Resources */,
 				FAF804B6269AD17B00DFBA94 /* Assets.xcassets in Resources */,
 			);
