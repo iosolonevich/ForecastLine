@@ -1,6 +1,6 @@
-## Weather app with temperature charts
+## Weather app with an iconographic charts 
 
-<img src="https://github.com/iosolonevich/ForecastLine/blob/main/ForecastLine/Support/images/main.jpeg" width="320" /><img src="https://github.com/iosolonevich/ForecastLine/blob/main/ForecastLine/Support/images/locations.jpeg" width="320" /><img src="https://github.com/iosolonevich/ForecastLine/blob/main/ForecastLine/Support/images/addlocation.jpeg" width="320" />
+<img src="https://github.com/iosolonevich/ForecastLine/blob/main/ForecastLine/Support/images/main.jpeg" width="315" /><img src="https://github.com/iosolonevich/ForecastLine/blob/main/ForecastLine/Support/images/locations.jpeg" width="315" /><img src="https://github.com/iosolonevich/ForecastLine/blob/main/ForecastLine/Support/images/addlocation.jpeg" width="315" />
 
 * MVVM architecture
 * Clean Architecture principles, SOLID principles
