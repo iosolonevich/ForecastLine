@@ -1,5 +1,7 @@
 ## Weather app with temperature charts
 
+<img src="https://github.com/iosolonevich/ForecastLine/blob/main/ForecastLine/Support/images/main.jpeg" width="320" /><img src="https://github.com/iosolonevich/ForecastLine/blob/main/ForecastLine/Support/images/locations.jpeg" width="320" /><img src="https://github.com/iosolonevich/ForecastLine/blob/main/ForecastLine/Support/images/addlocation.jpeg" width="320" />
+
 * MVVM architecture
 * Clean Architecture principles, SOLID principles
 * Dependency Injection design pattern
