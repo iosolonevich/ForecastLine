@@ -112,7 +112,7 @@ private extension LocationListController {
     }
     
     private func setupNavigationBar() {
-        title = "Title11"
+        title = "ForecastLine"
         //navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus.magnifyingglass"), style: .done, target: self, action: #selector(handleAddLocationButton))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .done, target: self, action: #selector(handleSettingsButton))
