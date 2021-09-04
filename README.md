@@ -12,7 +12,8 @@
 
 - [x] main screen with a location list
     - [ ] scrollable chart view for daily/hourly forecast
-    - [x]  detailed info for current weather
+    - [x] detailed info for current weather
+    - [ ] togle button for hourly/daily forecast
 
 - [x] location screen
     - [x] search screen with autocomplete location suggestions
