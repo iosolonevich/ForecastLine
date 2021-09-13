@@ -1,4 +1,4 @@
-## Weather app with an iconographic charts 
+## Weather app with an iconographic charts (work in progress)
 
 <img src="https://github.com/iosolonevich/ForecastLine/blob/main/ForecastLine/Support/images/main.jpeg" width="250" /><img src="https://github.com/iosolonevich/ForecastLine/blob/main/ForecastLine/Support/images/locations.jpeg" width="250" /><img src="https://github.com/iosolonevich/ForecastLine/blob/main/ForecastLine/Support/images/addlocation.jpeg" width="250" />
 
