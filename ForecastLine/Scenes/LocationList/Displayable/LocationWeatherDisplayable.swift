@@ -17,9 +17,9 @@ struct LocationWeatherDisplayable {
     init(object: LocationWeather) {
         id = object.id
         name = object.locationName
-        temp = object.temperature.temperatureStringKelvinToCelsius
+        temp = object.temperature.temperatureString
         symbol = object.symbol
-        hourly = object.hourly.map { LocationHourlyForecastListDisplayable(object: $0) }
-        daily = object.daily.map { LocationDailyForecastListDisplayable(object: $0) }
+        hourly = object.hourly?.map { LocationHourlyForecastListDisplayable(object: $0) } ?? [LocationHourlyForecastListDisplayable()]
+        daily = object.daily?.map { LocationDailyForecastListDisplayable(object: $0) } ?? [LocationDailyForecastListDisplayable()]
     }
 }

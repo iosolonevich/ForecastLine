@@ -7,80 +7,86 @@
 
 import Foundation
 
-final class APIClient {
+enum APIError: Error, LocalizedError {
     
-    private let defaultSession = URLSession(configuration: .default)
-    private let jsonDeserializer = SerializeHelper.shared.decoder
+    case unknown, apiError(reason: String), parserError(reason: String), networkError(from: URLError)
     
-    func perform<T>(request: Request<T>) {
-        
-        guard let urlRequest = buildURLRequest(request: request) else {
-            request.completion?(.failure(InvalidURLError()))
-            return
+    var errorDescription: String? {
+        switch self {
+        case .unknown:
+            return "Unknown error"
+        case .apiError(let reason), .parserError(let reason):
+            return reason
+        case .networkError(let from):
+            return from.localizedDescription
         }
-        
-        let dataTask = defaultSession.dataTask(with: urlRequest) { data, response, error in
-            self.handleResponse(data: data, response: response, error: error, request: request)
-        }
-        
-        dataTask.resume()
     }
 }
 
-extension APIClient {
+///
+/// https://openweathermap.org/api/one-call-api
+///
+class APIClient {
     
-    private func buildURLRequest<T>(request: Request<T>) -> URLRequest? {
-        
-        guard let url = URL(string: request.url) else {
-            return nil
-        }
-        
-        let urlRequest = URLRequest(url: url)
-        return urlRequest
+    let apiKey: String
+    let sessionManager: URLSession
+    
+    let mediaType = "application/json; charset=utf-8"
+    let oneCallURL = "https://api.openweathermap.org/data/2.5/onecall"
+    
+    init(apiKey: String) {
+        self.apiKey = "appid=" + apiKey
+        self.sessionManager = {
+            let configuration = URLSessionConfiguration.default
+            configuration.timeoutIntervalForRequest = 30  // seconds
+            configuration.timeoutIntervalForResource = 30 // seconds
+            return URLSession(configuration: configuration)
+        }()
     }
     
-    private func handleResponse<T>(data: Data?, response: URLResponse?, error: Error?, request: Request<T>) {
-        
-        if let error = error {
-            request.completion?(.failure(error))
-            return
-        }
-        
-        guard let response = response as? HTTPURLResponse else {
-            request.completion?(.failure(MissingAPIResponse()))
-            return
-        }
-        
-        guard response.statusCode >= 200 && response.statusCode < 300 else {
-            request.completion?(.failure(APIError(statusCode: response.statusCode, data: data)))
-            return
-        }
-        
-        serializeResponse(request: request, data: data)
+    private func baseUrl(_ locParam: String, options: WeatherOptionsProtocol) -> URL? {
+        URL(string: "\(oneCallURL)?\(locParam)\(options.toParamString())&\(apiKey)")
     }
-    
-    private func serializeResponse<T>(request: Request<T>, data: Data?) {
+
+    func fetchWeatherAsync<T: Decodable>(param: String, options: WeatherOptionsProtocol) async throws -> T {
         
-        if let completion = request.completion as? ((Result<Empty, Error>) -> Void) {
-            completion(.success(Empty()))
-            return
+        guard let url = baseUrl(param, options: options) else {
+            throw APIError.apiError(reason: "bad URL")
         }
-        
-        guard let data = data else {
-            request.completion?(.failure(MissingAPIData()))
-            return
-        }
-        
-//        if let niceString = data.prettyStringValue {
-//            print(niceString)
-//        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue(mediaType, forHTTPHeaderField: "Accept")
+        request.addValue(mediaType, forHTTPHeaderField: "Content-Type")
         
         do {
-            let decodedObject = try jsonDeserializer.decode(T.self, from: data)
-            request.completion?(.success(decodedObject))
-        } catch let error {
-            request.completion?(.failure(error))
-            return
+            let (data, response) = try await URLSession.shared.data(for: request)
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                throw APIError.unknown
+            }
+            if (httpResponse.statusCode == 401) {
+                throw APIError.apiError(reason: "Unauthorized")
+            }
+            if (httpResponse.statusCode == 403) {
+                throw APIError.apiError(reason: "Resource forbidden")
+            }
+            if (httpResponse.statusCode == 404) {
+                throw APIError.apiError(reason: "Resource not found")
+            }
+            if (405..<500 ~= httpResponse.statusCode) {
+                throw APIError.apiError(reason: "Client error")
+            }
+            if (500..<600 ~= httpResponse.statusCode) {
+                throw APIError.apiError(reason: "Server error")
+            }
+            if (httpResponse.statusCode != 200) {
+                throw APIError.networkError(from: URLError(.badServerResponse))
+            }
+            let results = try JSONDecoder().decode(T.self, from: data)
+            return results
+        }
+        catch {
+            throw APIError.parserError(reason: "JSON error")
         }
     }
 }

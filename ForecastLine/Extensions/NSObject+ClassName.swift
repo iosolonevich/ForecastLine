@@ -7,12 +7,12 @@
 
 import Foundation
 
-public protocol ClassNameProtocol {
+protocol ClassNameProtocol {
     static var className: String { get }
     var className: String { get }
 }
 
-public extension ClassNameProtocol {
+extension ClassNameProtocol {
     static var className: String {
         return String(describing: self)
     }

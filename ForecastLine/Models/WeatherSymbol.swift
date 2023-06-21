@@ -68,7 +68,5 @@ enum WeatherSymbol: String {
         case .mistNight:
             return "cloud.fog.fill"
         }
-        
-        
     }
 }

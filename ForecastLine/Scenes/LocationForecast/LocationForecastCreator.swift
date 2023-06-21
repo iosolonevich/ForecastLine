@@ -12,9 +12,8 @@ struct LocationForecastCreator {
     func getController(with locationDetails: LocationWeather) -> LocationForecastController {
         
         let cellManager = LocationForecastCellManager()
-        let networking = WeatherNetworkImpl()
-        let fakeNetworking = WeatherNetworkFakeImpl()
-        let viewModel = LocationForecastViewModel(locationDetails: locationDetails, networking: networking, fakeNetworking: fakeNetworking)
+        let weatherService = WeatherService(apiKey: "1d5922c8842bc718cedf8cb0289f43a7")
+        let viewModel = LocationForecastViewModel(locationDetails: locationDetails, weatherService: weatherService)
         let controller = LocationForecastController(viewModel: viewModel, cellManager: cellManager)
         return controller
     }

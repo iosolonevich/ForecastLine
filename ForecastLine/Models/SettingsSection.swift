@@ -74,7 +74,7 @@ enum OtherOptions: Int, CaseIterable, SectionType {
     
     var description: String {
         switch self {
-        case .emailSupport: return "Email Suppport"
+        case .emailSupport: return "Email Support"
         case .rateThisApp: return "Rate This App"
         case .privacy: return "Privacy Policy"
         case .about: return "About The App"

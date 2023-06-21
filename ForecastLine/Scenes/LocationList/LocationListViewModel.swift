@@ -21,22 +21,18 @@ final class LocationListViewModel {
     
     var delegate: LocationListViewModelDelegate?
     
-    private let networking: WeatherNetwork
-    private let fakeNetworking: WeatherNetworkFake
+    private let weatherService: WeatherService
     private let repository: SavedLocationsRepository
     
-    init(networking: WeatherNetwork, fakeNetworking: WeatherNetworkFake, repository: SavedLocationsRepository)
-    {
-        self.networking = networking
-        self.fakeNetworking = fakeNetworking
+    init(weatherService: WeatherService, repository: SavedLocationsRepository) {
+        self.weatherService = weatherService
         self.repository = repository
     }
 }
 
 extension LocationListViewModel {
-    
+
     func getSavedLocations() {
-        
         repository.getLocations { result in
             switch result {
             case .success(let locations):
@@ -46,13 +42,7 @@ extension LocationListViewModel {
             }
         }
     }
-    
-    func saveSampleLocations() {
-        
-        repository.saveLocations(locations: [Location(id: "1", name: "Prague", latitude: 50.0755, longitude: 14.4378), Location(id: "2", name: "New York", latitude: 40.7128, longitude: -74.006)], completion: nil)
-    }
 }
-
 
 private extension LocationListViewModel {
     
@@ -73,59 +63,54 @@ private extension LocationListViewModel {
         
         var responses = [Result<LocationWeather, Error>]()
         locations.forEach { location in
-            let coordinates = Coordinates(lat: location.latitude, lon: location.longitude)
-            
-            fakeNetworking.fetchFakeCurrentWeatherForLocation(coordinates: coordinates.stringValue) { response in
+            weatherService.getWeather(
+                lat: location.latitude,
+                lon: location.longitude,
+                options: WeatherRequestOptions.current()
+            ) { response in
                 let locationWeatherResult = self.convertToLocationWeatherResult(location: location, response: response)
                 responses.append(locationWeatherResult)
+                
+                //TODO: put outside the loop
                 self.handleLocationWeatherResponse(locations: locations, responses: responses, completion: completion)
             }
-            
-            
-//            networking.fetchCurrentWeatherForLocation(coordinates: coordinates.stringValue) { response in
-//                let locationWeatherResult = self.convertToLocationWeatherResult(location: location, response: response)
-//                responses.append(locationWeatherResult)
-//                self.handleLocationWeatherResponse(locations: locations, responses: responses, completion: completion)
-//            }
-            
         }
     }
     
-    private func convertToLocationWeatherResult(location: Location, response: Result<OpenWeatherMapAPIResponse, Error>) -> Result<LocationWeather, Error> {
-        
-        switch response {
-        case .failure(let error):
-            return .failure(error)
-        case .success(let apiResponse):
-            guard let locationWeather = convertToLocationWeather(location: location, apiResponse: apiResponse) else {
-                return .failure(MissingAPIData())
-            }
-            return .success(locationWeather)
+    private func convertToLocationWeatherResult(location: Location, response: OWMResponse?) -> Result<LocationWeather, Error> {
+        guard let response, let locationWeather = convertToLocationWeather(location: location, apiResponse: response) else {
+            return .failure(MissingAPIData())
         }
+        return .success(locationWeather)
     }
     
-    private func convertToLocationWeather(location: Location, apiResponse: OpenWeatherMapAPIResponse) -> LocationWeather? {
+    private func convertToLocationWeather(location: Location, apiResponse: OWMResponse) -> LocationWeather? {
 //        guard let temp = apiResponse.current.temp else { return nil }
-        return LocationWeather(id: location.id,
-                               locationName: location.name,
-                               latitude: location.latitude,
-                               longitude: location.longitude,
-                               temperature: apiResponse.current.temp,
-                               hourly: apiResponse.hourly.map { LocationHourlyForecast(
-//                                                                    coordinates: coordinates,
-                                                                    dateTimestamp: Double($0.dt),
-                                                                    temperature: $0.temp,
-                                                                    precipitationProbability: $0.dewPoint,
-                                                                    icon: $0.weather.first?.icon ?? "") },
-                               daily: apiResponse.daily.map { LocationDailyForecast(
-//                                                                    coordinates: coordinates,
-                                                                    dateTimestamp: Double($0.dt),
-                                                                    temperature: $0.temp.day,
-                                                                    maxTemperature: $0.temp.max,
-                                                                    minTemperature: $0.temp.min,
-                                                                    precipitationProbability: $0.dewPoint,
-                                                                    icon: $0.weather.first?.icon ?? "") },
-                               icon: apiResponse.current.weather.first?.icon ?? "")
+        return LocationWeather(
+            id: location.id,
+            locationName: location.name,
+            latitude: location.latitude,
+            longitude: location.longitude,
+            temperature: apiResponse.current.temp,
+            hourly: apiResponse.hourly?.map {
+                LocationHourlyForecast(
+                    dateTimestamp: Double($0.dt),
+                    temperature: $0.temp,
+                    precipitationProbability: $0.dewPoint,
+                    icon: $0.weather.first?.icon ?? ""
+                )
+            },
+            daily: apiResponse.daily?.map {
+                LocationDailyForecast(
+                    dateTimestamp: Double($0.dt),
+                    temperature: $0.temp.day,
+                    maxTemperature: $0.temp.max,
+                    minTemperature: $0.temp.min,
+                    precipitationProbability: $0.dewPoint,
+                    icon: $0.weather.first?.icon ?? ""
+                )
+            },
+            icon: apiResponse.current.weather.first?.icon ?? "")
     }
     
     private func handleLocationWeatherResponse(locations: [Location], responses: [Result<LocationWeather, Error>], completion: FetchWeatherCompletion?) {

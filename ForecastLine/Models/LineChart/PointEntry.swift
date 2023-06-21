@@ -14,7 +14,6 @@ struct PointEntry: Comparable {
     let pointLabel: String
     
     let feelsLike: String? = ""
-//    let icon: String?
     let symbol: WeatherSymbol
     
     static func < (lhs: PointEntry, rhs: PointEntry) -> Bool {

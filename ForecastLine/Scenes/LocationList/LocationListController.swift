@@ -30,9 +30,7 @@ final class LocationListController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        viewModel.saveSampleLocations()
-        
+
         setupTableView()
         setupNavigationBar()
         setupViewModelDelegate()

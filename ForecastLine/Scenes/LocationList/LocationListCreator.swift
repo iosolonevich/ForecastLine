@@ -14,9 +14,8 @@ struct LocationListCreator {
         let userDefaults = UserDefaults.standard
         let jsonHelper = SerializeHelper.shared
         let repository = SavedLocationsRepositoryImpl(userDefaults: userDefaults, jsonHelper: jsonHelper)
-        let networking = WeatherNetworkImpl()
-        let fakeNetworking = WeatherNetworkFakeImpl()
-        let viewModel = LocationListViewModel(networking: networking, fakeNetworking: fakeNetworking, repository: repository)
+        let weatherService = WeatherService(apiKey: "1d5922c8842bc718cedf8cb0289f43a7")
+        let viewModel = LocationListViewModel(weatherService: weatherService, repository: repository)
         let cellManager = LocationListCellManager()
         let controller = LocationListController(viewModel: viewModel, cellManager: cellManager)
         return controller

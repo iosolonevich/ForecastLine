@@ -1,5 +1,5 @@
 //
-//  WeatherNetwork.swift
+//  WeatherService.swift
 //  ForecastLine
 //
 //  Created by alex on 11.07.2021.
@@ -7,17 +7,35 @@
 
 import Foundation
 
-typealias FetchWeatherResponseCompletion = (Result<OpenWeatherMapAPIResponse, Error>) -> Void
-
-protocol WeatherNetwork {
+class WeatherService {
     
-    func fetchCurrentWeatherForLocation(coordinates: String, completion: FetchWeatherResponseCompletion?)
-}
-
-final class WeatherNetworkImpl: BaseNetwork, WeatherNetwork {
+    private let client: APIClient
     
-    func fetchCurrentWeatherForLocation(coordinates: String, completion: FetchWeatherResponseCompletion?) {
-        let urlParams = "https://api.openweathermap.org/data/2.5/"
-        let httpRequest = Request(url: APIURL.owmUrlString + coordinates + urlParams, method: HTTPMethod.get, completion: completion)
+    init(apiKey: String) {
+        self.client = APIClient(apiKey: apiKey)
+    }
+    
+    ///
+    /// Get the weather with async
+    ///
+    func getWeather(lat: Double, lon: Double, options: WeatherOptionsProtocol) async -> OWMResponse? {
+        do {
+            let results: OWMResponse = try await client.fetchWeatherAsync(param: "lat=\(lat)&lon=\(lon)", options: options)
+            return results
+        } catch {
+            return nil
+        }
+    }
+    
+    ///
+    /// Get the weather with completion handler
+    ///
+    func getWeather(lat: Double, lon: Double, options: WeatherOptionsProtocol, completion: @escaping (OWMResponse?) -> Void) {
+        Task {
+            let results: OWMResponse? = await getWeather(lat: lat, lon: lon, options: options)
+            DispatchQueue.main.async {
+                completion(results)
+            }
+        }
     }
 }

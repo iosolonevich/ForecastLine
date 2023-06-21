@@ -19,7 +19,7 @@ struct LocationSearchResultsCreator {
     }
 }
 
-protocol LocationSearchResultsDelegate: class {
+protocol LocationSearchResultsDelegate: AnyObject {
     func didLocationSearch(latitude: Double, longitude: Double, locationName: String)
 }
 

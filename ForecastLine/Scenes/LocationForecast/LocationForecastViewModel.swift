@@ -14,14 +14,12 @@ final class LocationForecastViewModel {
     var forecastDisplayable: LocationForecastsDisplayable?
     
     private let locationDetails: LocationWeather
-    private let networking: WeatherNetwork
-    private let fakeNetworking: WeatherNetworkFake
+    private let weatherService: WeatherService
     
-    init(locationDetails: LocationWeather, networking: WeatherNetwork, fakeNetworking: WeatherNetworkFake)
+    init(locationDetails: LocationWeather, weatherService: WeatherService)
     {
         self.locationDetails = locationDetails
-        self.networking = networking
-        self.fakeNetworking = fakeNetworking
+        self.weatherService = weatherService
     }
 }
 
@@ -36,7 +34,7 @@ extension LocationForecastViewModel {
         
         //get forecast using fake networking and closures like in locationlistviewmodel etc.
         let coordinates = Coordinates(lat: locationDetails.latitude, lon: locationDetails.longitude)
-        fetchLocationWeathers(in: coordinates.stringValue) { result in
+        fetchLocationWeathers(in: coordinates) { result in
             switch result {
             case .success(let forecast):
                 let hourlyForecast = forecast.hourly
@@ -54,22 +52,20 @@ extension LocationForecastViewModel {
 
 private extension LocationForecastViewModel {
     
-    private func fetchLocationWeathers(in coordinates: String, completion: FetchForecastCompletion?) {
+    private func fetchLocationWeathers(in coordinates: Coordinates, completion: FetchForecastCompletion?) {
         
-        fakeNetworking.fetchFakeCurrentWeatherForLocation(coordinates: coordinates) { result in
-            switch result {
-            case .success(let apiResponse):
-                let hourlyForecast = apiResponse.hourly.map {
-                        LocationHourlyForecast(
-//                            coordinates: coordinates,
-                            dateTimestamp: Double($0.dt),
-                            temperature: $0.temp,
-                            precipitationProbability: $0.dewPoint,
-                            icon: $0.weather.first?.icon ?? "")
+        weatherService.getWeather(lat: coordinates.lat, lon: coordinates.lon, options: WeatherRequestOptions.current()) { apiResponse in
+                
+            if let hourly = apiResponse?.hourly, let daily = apiResponse?.daily {
+                let hourlyForecast = hourly.map {
+                    LocationHourlyForecast(
+                        dateTimestamp: Double($0.dt),
+                        temperature: $0.temp,
+                        precipitationProbability: $0.dewPoint,
+                        icon: $0.weather.first?.icon ?? "")
                 }
-                let dailyForecast = apiResponse.daily.map {
+                let dailyForecast = daily.map {
                     LocationDailyForecast(
-//                        coordinates: coordinates,
                         dateTimestamp: Double($0.dt),
                         temperature: $0.temp.day,
                         maxTemperature: $0.temp.max,
@@ -78,10 +74,9 @@ private extension LocationForecastViewModel {
                         icon: $0.weather.first?.icon ?? "")
                 }
                 completion?(.success(LocationForecast(hourly: hourlyForecast, daily: dailyForecast)))
-            case .failure(let error):
-                completion?(.failure(error))
+            } else {
+                completion?(.failure(MissingAPIData()))
             }
         }
     }
-    
 }
